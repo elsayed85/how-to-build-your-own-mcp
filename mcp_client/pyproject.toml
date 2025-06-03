@@ -7,4 +7,8 @@ dependencies = [
     "mcp>=1.9.2",
     "openai>=1.82.1",
     "python-dotenv>=1.1.0",
+    "langchain>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "langchain-mcp-adapters>=0.1.4,<0.2.0",
+    "langgraph (>=0.4.8,<0.5.0)",
 ]
