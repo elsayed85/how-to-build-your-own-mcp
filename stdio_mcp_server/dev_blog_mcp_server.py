@@ -125,41 +125,6 @@ async def serve(auth_token: str):
             return {"error": f"An unexpected error occurred: {str(e)}"}
 
     @mcp.tool(
-        name="get_comments",
-        description="""
-        Get comments for a specific dev.to article.
-        
-        Args:
-            article_id (str): The article ID (e.g., "2546060")
-        
-        Returns:
-            List of comments for the article
-        """,
-    )
-    async def get_comments(article_id: str) -> List[Dict[str, Any]]:
-        """
-        Get comments for a specific dev.to article.
-        """
-        try:
-            # Make API request
-            async with httpx.AsyncClient() as client:
-                response = await client.get(
-                    f"{DEV_TO_BASE_URL}/comments?a_id={article_id}"
-                )
-                response.raise_for_status()
-
-                comments = response.json()
-
-                return comments
-
-        except httpx.HTTPError as e:
-            logger.error(f"HTTP error occurred: {e}")
-            return {"error": f"Failed to fetch comments: {str(e)}"}
-        except Exception as e:
-            logger.error(f"Unexpected error occurred: {e}")
-            return {"error": f"An unexpected error occurred: {str(e)}"}
-
-    @mcp.tool(
         name="get_tags",
         description="""
         Get popular tags from dev.to.

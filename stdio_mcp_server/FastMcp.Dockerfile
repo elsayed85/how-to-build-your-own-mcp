@@ -1,9 +1,7 @@
 # to build use : 
-#    docker build -f devBlogMcp.Dockerfile -t dev-to-mcp-server .
-
+#    docker build -f FastMcp.Dockerfile -t fast-mcp-server .
 # to run use :
-#    docker run -i --rm dev-to-mcp-server
-
+#    docker run -i --rm fast-mcp-server
 
 # Use Python 3.12 slim image as the base
 FROM python:3.12-slim-bookworm
@@ -21,10 +19,10 @@ RUN pip install uv
 RUN uv sync --frozen --no-dev
 
 # Copy the MCP server Python script
-COPY dev_blog_mcp_server.py ./
+COPY fast_mcp_server.py ./
 
 # Activate the virtual environment by updating PATH
 ENV PATH="/app/.venv/bin:$PATH"
 
 # Use ENTRYPOINT to make the container executable with arguments
-ENTRYPOINT ["python", "dev_blog_mcp_server.py"]
+ENTRYPOINT ["python", "fast_mcp_server.py"]

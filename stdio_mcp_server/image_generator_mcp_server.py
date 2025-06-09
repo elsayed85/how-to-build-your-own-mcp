@@ -53,11 +53,12 @@ async def serve():
 def main():
     async def _run():
         server = await serve()
-        logger.info("Starting Images Generator MCP server...")
+        logger.info("Starting Calculator MCP server...")
         return server
 
     server = asyncio.run(_run())
-    server.run()
+    server.run()  # This should work with stdio
+
 
 
 if __name__ == "__main__":

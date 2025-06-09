@@ -19,16 +19,12 @@ print(f"Using MCP directory: {mcp_dir}")
 server_config = {
     "math": {
         "command": "python",
-        "args": [
-            f"{mcp_dir}/calculator_mcp_server.py"
-        ],
+        "args": [f"{mcp_dir}/calculator_mcp_server.py"],
         "transport": "stdio",
     },
     "image-generation": {
         "command": "python",
-        "args": [
-            f"{mcp_dir}/image_generator_mcp_server.py"
-        ],
+        "args": [f"{mcp_dir}/image_generator_mcp_server.py"],
         "transport": "stdio",
     },
     "dev-blog": {
@@ -77,7 +73,12 @@ def create_langchain_agent(tools: list, model_name: str = "gpt-4o-mini"):
     logger.log_step(4, f"Creating React Agent with {model_name}...")
 
     try:
-        agent = create_react_agent(model_name, tools)
+        agent = create_react_agent(
+            model=model_name,
+            tools=tools,
+            prompt="You are a helpful assistant that can use tools to answer questions.",
+            debug=False,
+        )
         logger.log_success("React Agent created successfully")
         logger.log_info(f"  - Model: {model_name}")
         logger.log_info(f"  - Tools attached: {len(tools)}")
